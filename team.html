@@ -4,17 +4,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Library Management System</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Team - Library Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --accent: #38bdf8;
+            --muted: #cbd5e1;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.15), transparent 25%),
+                        radial-gradient(circle at 80% 0%, rgba(14, 165, 233, 0.25), transparent 30%),
+                        var(--bg);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: #0b1224;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 64px 16px 32px;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 720px;
+            margin: 12px auto 0;
+        }
+
+        .mentor-card {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(14, 165, 233, 0.05));
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 20px;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: center;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+        }
+
+        .mentor-card img {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 18px;
+            object-fit: cover;
+            box-shadow: 0 18px 40px rgba(56, 189, 248, 0.25);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+        }
+
+        .mentor-card h3 {
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .badge-soft {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.15);
+            color: #7dd3fc;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .member-card {
+            background: var(--card);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .member-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 25px 60px rgba(56, 189, 248, 0.2);
+        }
+
+        .member-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 18px;
+            object-fit: cover;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            margin-bottom: 14px;
+        }
+
+        .member-role {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            color: var(--muted);
+            text-align: center;
+            padding: 28px 0 40px;
+        }
+
+        @media (max-width: 768px) {
+            .mentor-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .mentor-card img {
+                margin: 0 auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <!-- Logo -->
-                <img src="https://media.istockphoto.com/id/1270155083/vector/blue-e-book-logo-design-vector-sign-of-electronic-book-library-icon-symbol.jpg?s=612x612&w=0&k=20&c=DGwVHcCijit8E62o3S2dqFXM2usLP2AmJoOSnDhsI5M=" alt="Library Logo" width="40" height="40" class="me-2">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="https://media.istockphoto.com/id/1270155083/vector/blue-e-book-logo-design-vector-sign-of-electronic-book-library-icon-symbol.jpg?s=612x612&w=0&k=20&c=DGwVHcCijit8E62o3S2dqFXM2usLP2AmJoOSnDhsI5M=" alt="Library Logo" width="36" height="36" class="me-2 rounded-circle">
                 <strong>Library Management</strong>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,85 +146,75 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="books.php">Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Adimn</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="team.html">Team</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.php">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Admin</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="team.html">Team</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- <header class="bg-warning text-white text-center py-4">
-        <h1>Team Vision</h1>
-        <p>Thank You for visit our sitea<br>Manage library resources and users</p>
-    </header> -->
+    <section class="hero">
+        <div class="container">
+            <span class="badge-soft">People behind the stacks</span>
+            <h1 class="display-5 mt-2">Meet the Mentor & Makers</h1>
+            <p>Seven minds, one library. Guided by our mentor and powered by five builders (plus you!), we keep pages turning and code shipping.</p>
+        </div>
+    </section>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .team-member img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .teacher-section {
-            background-color: #f8f9fa; /* Light grey background */
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .teacher-section h1 {
-            color: #007bff; /* Blue color for the name */
-        }
-
-        .teacher-image img {
-            width: 400px;
-            height: 500px;
-            object-fit: cover;
-        }
-
-        .team-member h5 {
-            margin-top: 15px;
-        }
-
-        .team-member p {
-            font-size: 14px;
-            color: #555; /* Subtle gray for details */
-        }
-
-        .spacer {
-            margin-bottom: 50px; /* Space at the bottom */
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container mt-4">
-        <!-- Mentor Section -->
-        <div class="teacher-section text-center mb-5">
-            
-            <h1>Muntasir Al Maruf</h1>
-            <p>Computer Science Engineering at  Daffodil International University <br> muntasir22205101721.edu.bd</p>
-            <div class="teacher-image">
-                <img src="images/muntasir.jpeg" alt="" class="img-fluid">
+    <div class="container mb-5">
+        <div class="mentor-card mb-5">
+            <div>
+                <span class="badge-soft">Mentor</span>
+                <h3 class="h3">Maam</h3>
+                <p class="mb-2">Lecturer, Computer Science & Engineering<br>Daffodil International University</p>
+                <p class="mb-0 member-role">maam@g.com</p>
+            </div>
+            <div class="text-end text-md-end text-center">
+                <img src="images/muntasir.jpeg" alt="Mentor photo" class="img-fluid">
             </div>
         </div>
-        <div class="spacer"></div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <span class="badge-soft">Project Team</span>
+                <h4 class="mt-1 mb-0">Five builders, one vision</h4>
+            </div>
+        </div>
+
+        <div class="team-grid">
+            <div class="member-card">
+                <img src="images/photo_2025-05-06_11-32-36.jpg" alt="Team member portrait">
+                <h5 class="mb-1">Shamim</h5>
+                <p class="member-role mb-0">Lead Developer • Backend & DB</p>
+            </div>
+            <div class="member-card">
+                <img src="images/emon.jpeg" alt="Team member portrait">
+                <h5 class="mb-1">Emon</h5>
+                <p class="member-role mb-0">UI/UX • Frontend Polish</p>
+            </div>
+            <div class="member-card">
+                <img src="images/taj.jpeg" alt="Team member portrait">
+                <h5 class="mb-1">Taj</h5>
+                <p class="member-role mb-0">Integration • QA</p>
+            </div>
+            <div class="member-card">
+                <img src="images/emran.jpeg" alt="Team member portrait">
+                <h5 class="mb-1">Emran</h5>
+                <p class="member-role mb-0">Security • DevOps</p>
+            </div>
+            <div class="member-card">
+                <img src="images/shihab.jpeg" alt="Team member portrait">
+                <h5 class="mb-1">Shihab</h5>
+                <p class="member-role mb-0">Data • Analytics</p>
+            </div>
+        </div>
     </div>
+
+    <footer>
+        Crafted with curiosity, coffee, and countless checkouts.
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
